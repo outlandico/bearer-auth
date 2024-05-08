@@ -1,18 +1,15 @@
-'use strict';
+const express = require('express');
+const app = express();
 
-require('dotenv').config();
+// Define routes or middleware here
+// For example:
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
 
-// Importing the start function from server.js
-const { start } = require('./server.js');
+const PORT = process.env.PORT || 3000;
 
-// Start the web server
-start(process.env.PORT);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
-// Start up DB Server
-const { db } = require('./src/auth/models/index.js');
-
-db.sync()
-  .then(() => {
-    // Do something after syncing
-  })
-  .catch(error => console.error(error));

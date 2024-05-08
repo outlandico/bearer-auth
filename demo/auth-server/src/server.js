@@ -3,8 +3,12 @@
 const express = require('express');
 const cors = require('cors');
 
-const handleErrors = require('./middleware/500.js');
-const handleNotFound = require('./middleware/404.js');
+// Original import statement
+const handleNotFound = require('./error-handlers/notFoundHandler.js');
+
+// Adjusted import statement
+const handleNotFound = require('./error-handlers/404.js');
+
 
 const authRoutes = require('./auth/routes.js');
 const { basicAuth } = require("./auth/middleware/basicAuth.js"); // Corrected import

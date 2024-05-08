@@ -31,7 +31,8 @@ const sequelize = new Sequelize(DATABASE_URL, db_config);
 
 const User = userSchema(sequelize, DataTypes);
 
+// Export the sequelize instance and the User model
 module.exports = {
-  sequelize,
+  db: sequelize, // Export the sequelize instance as db
   User
 };

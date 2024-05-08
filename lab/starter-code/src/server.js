@@ -1,11 +1,11 @@
+// server.js or app.js
+
 'use strict';
 
 const express = require('express');
 const cors = require('cors');
-
-const handleErrors = require('./middleware/500.js');
-const handleNotFound = require('./middleware/404.js');
-
+const notFoundHandler = require('./error-handlers/notFoundHandler.js'); // Import the 404 error handler
+const handleErrors = require('./error-handlers/500.js');
 const authRoutes = require('./auth/routes.js');
 const { basicAuth } = require("./auth/middleware/basicAuth.js");
 const { bearerAuth } = require("./auth/middleware/bearerAuth.js");
@@ -36,7 +36,7 @@ app.get('/test-bearer', bearerAuth, (request, response) => {
 });
 
 // Handle 404 errors
-app.use("*", handleNotFound);
+app.use("*", notFoundHandler); // Apply the 404 error handler
 // Handle other errors
 app.use(handleErrors);
 
