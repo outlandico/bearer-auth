@@ -12,9 +12,10 @@ const {
   handleSecret
 } = require('./handlers.js');
 
+// Define routes
 authRouter.post('/signup', handleSignup);
-authRouter.post('/signin', basicAuth, handleSignin);
-authRouter.get('/users', bearerAuth, handleGetUsers);
-authRouter.get('/secret', bearerAuth, handleSecret);
+authRouter.post('/signin', basicAuth, handleSignin); // Add basicAuth middleware before handleSignin
+authRouter.get('/users', bearerAuth, handleGetUsers); // Use bearerAuth middleware for user retrieval
+authRouter.get('/secret', bearerAuth, handleSecret); // Use bearerAuth middleware for accessing the secret area
 
 module.exports = authRouter;
